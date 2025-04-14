@@ -1,0 +1,5 @@
+Write code 1
+Bugfix 0
+Build menu 1
+Test application 0
+
