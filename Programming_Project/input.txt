@@ -1,5 +1,5 @@
 Write code 1
-Bugfix 0
+Bugfix 1
 Build menu 1
 Test application 0
-
+Bugfix again 0

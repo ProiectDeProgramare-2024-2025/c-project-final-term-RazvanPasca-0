@@ -20,6 +20,20 @@ typedef struct {
     char name[100];
 } ToDoItem;
 
+void UpdateInputFile(ToDoItem *list, int count) {
+    FILE *file = fopen("input.txt", "w");
+    if (file == NULL) {
+        printf("Can't not open file\n");
+        return;
+    }
+
+    for (int i = 0; i < count; i++) {
+        fprintf(file, "%s %d\n", list[i].name, list[i].complete);
+    }
+
+    fclose(file);
+}
+
 void AddItem(ToDoItem **list, int *k, char *name, int complete) {
     *list = realloc(*list, (*k + 1) * sizeof(ToDoItem));
     if (*list == NULL) {
@@ -33,6 +47,8 @@ void AddItem(ToDoItem **list, int *k, char *name, int complete) {
     (*list)[*k].complete = complete;
 
     (*k)++;
+
+    UpdateInputFile(*list, *k);
 }
 
 void ViewList(ToDoItem *list, int k) {
@@ -69,8 +85,9 @@ void ShowMainMenu() {
     printf("1. Add Item\n");
     printf("2. View List\n");
     printf("3. Complete Item\n");
-    printf("4. Load from file\n");
-    printf("5. Exit\n");
+    printf("4. Load list\n");
+    printf("5. Save list\n");
+    printf("6. Exit\n");
     printf("Enter your choice: ");
 }
 
@@ -172,6 +189,10 @@ int main() {
                 break;
 
             case 5:
+                UpdateInputFile;
+                break;
+
+            case 6:
                 free(list);
                 CLEAR_SCREEN();
                 return 0;
