@@ -86,16 +86,15 @@ void ShowMainMenu() {
     printf("2. View List\n");
     printf("3. Complete Item\n");
     printf("4. Load list\n");
-    printf("5. Save list\n");
-    printf("6. Exit\n");
-    printf("Enter your choice: ");
+    printf("5. Exit\n");
+    printf(COLOR_CYAN "Enter your choice: " COLOR_RESET "\n");
 }
 
 void AddItemMenu(ToDoItem **list, int *count) {
     CLEAR_SCREEN();
     printf("~~~ Add New Item ~~~\n");
     char name[100];
-    printf("Enter the name of the item: ");
+    printf(COLOR_CYAN "Enter the name of the item: " COLOR_RESET "\n");
     getchar();
     fgets(name, 100, stdin);
     name[strcspn(name, "\n")] = '\0';
@@ -112,7 +111,7 @@ void LoadFromFile(ToDoItem **list, int *count) {
     FILE *file = fopen("input.txt", "r");
     if (file == NULL) {
         printf("Error: Could not open input.txt\n");
-        printf("\nPress Enter to continue...");
+        printf(COLOR_CYAN "\nPress Enter to continue..." COLOR_RESET "\n");
         getchar();
         getchar();
         return;
@@ -178,7 +177,7 @@ int main() {
                     getchar();
                     break;
                 }
-                printf("Enter the index of the item to complete: ");
+                printf(COLOR_CYAN "Enter the index of the item to complete: " COLOR_RESET "\n");
                 int index;
                 scanf("%d", &index);
                 CompleteItem(list, index, count);
@@ -189,10 +188,6 @@ int main() {
                 break;
 
             case 5:
-                UpdateInputFile;
-                break;
-
-            case 6:
                 free(list);
                 CLEAR_SCREEN();
                 return 0;
